@@ -1,0 +1,68 @@
+name: EDVR_L_REDS_deblur_official
+model_type: EDVRModel
+scale: 1
+num_gpu: 1  # set num_gpu: 0 for cpu mode
+gpu_ids: [2]
+manual_seed: 0
+distortion: deblur
+
+datasets:
+  test:
+    name: REDS4
+    mode: video_test
+    type: VideoTestDataset
+    dataroot_GT: /gdata1/zhuqi/REDS/val_sharp
+    dataroot_LQ: /gdata1/zhuqi/REDS/val_blur
+    filelist: /gdata1/zhuqi/REDS/val/groups.txt
+    io_backend:
+      type: disk
+    cache_data: false
+    num_frame: 5
+    padding: replicate
+    n_workers: 1
+    phase: test
+    data_type: img
+    
+
+# network structures
+network_G:
+  type: EDVR
+  num_in_ch: 3
+  num_out_ch: 3
+  num_feat: 128
+  num_extract_block: 5
+  num_reconstruct_block: 40
+  center_frame_idx: ~
+  hr_in: true
+  with_predeblur: true
+  with_tsa: true
+    # NOTE
+  nframes: 5
+  groups: 8
+  nf: 64
+  front_RBs: 5
+  back_RBs: 10 
+  center: None
+  predeblur: False
+  HR_in: False 
+  w_TSA: True
+
+path:
+  pretrain_network_g: /gdata2/zhuqi/work_dirs/deblur/EDVR/pretrained/EDVR_L_deblur_REDS_official-ca46bd8c.pth
+  strict_load: true
+  root: /gdata2/zhuqi/
+  results_root: /gdata2/zhuqi/results/EDVR_L_REDS_deblur_official
+  log: /gdata2/zhuqi/results/EDVR_L_REDS_deblur_official
+
+# validation settings
+val:
+  save_img: true
+  suffix: False  # add suffix to saved images, if None, use exp name
+
+  metrics:
+    psnr: # metric name, can be arbitrary
+      type: calculate_psnr
+      crop_border: 0
+      test_y_channel: false
+
+is_train: False

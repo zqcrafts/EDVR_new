@@ -11,9 +11,9 @@ datasets:
     name: REDS4
     mode: video_test
     type: VideoTestDataset
-    dataroot_GT: /gdata1/zhuqi/REDS/val_sharp
-    dataroot_LQ: /gdata1/zhuqi/REDS/val_blur
-    filelist: /gdata1/zhuqi/REDS/val/groups.txt
+    dataroot_GT: ../data/REDS/val_sharp
+    dataroot_LQ: ../data/REDS/val_blur
+    filelist: ../data/REDS/val/groups.txt
     io_backend:
       type: disk
     cache_data: false

@@ -13,7 +13,7 @@ import numpy as np
 
 #### options  python /gdata2/zhuqi/work_dirs/deblur/EDVR/test.py -opt /gdata2/zhuqi/work_dirs/deblur/EDVR/options/test/test_EDVR_L_deblur_REDS.yml 
 parser = argparse.ArgumentParser()
-parser.add_argument('-opt', type=str, required=True, help='Path to options YMAL file.')
+parser.add_argument('-opt', type=str, default='options/test/test_EDVR_L_deblur_REDS.yml', help='Path to options YMAL file.')
 
 opt = option.parse(parser.parse_args().opt, is_train=False)
 

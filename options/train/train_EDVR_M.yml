@@ -4,7 +4,7 @@ use_tb_logger: true
 model: video_base
 distortion: sr
 scale: 1
-gpu_ids: [2,4,5,6]
+gpu_ids: [0]
 
 #### datasets
 datasets:
@@ -50,7 +50,7 @@ network_G:
 path:
   root: /gdata2/zhuqi/output
   results_root: /gdata2/zhuqi/output
-  pretrain_model_G: /gdata2/zhuqi/work_dirs/deblur/EDVR/pretrained/EDVR_L_deblur_REDS_official-ca46bd8c.pth
+  pretrain_model_G: pretrained/EDVR_L_deblur_REDS_official-ca46bd8c.pth
   strict_load: false
   resume_state: ~
 

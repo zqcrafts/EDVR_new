@@ -21,3 +21,5 @@ cd EDVR
 python create_txt.py --input ../data/REDS/train/train_blur --target ../data/REDS/train/train_sharp --output ../data/REDS/train
 python create_txt.py --input ../data/REDS/val/val_blur --target ../data/REDS/val/val_sharp --output ../data/REDS/val
 python test.py -opt options/test/test_EDVR_L_deblur_REDS_zehui.yml
+#python train.py -opt options/train/train_EDVR_M_zehui.yml
+

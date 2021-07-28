@@ -124,7 +124,7 @@ class DatasetFromFolder(data.Dataset):
 
     def __getitem__(self, index):
 
-        inputs, target = load_image_train2(self.image_filenames[index])
+        inputs, target = load_image_train2(self.image_filenames[index])  
 
         if self.patch_size != None:
             inputs, target = get_patch(inputs, target, self.patch_size, self.upscale_factor)

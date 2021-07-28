@@ -2,7 +2,7 @@ name: EDVR_L_REDS_deblur_official
 model_type: EDVRModel
 scale: 1
 num_gpu: 1  # set num_gpu: 0 for cpu mode
-gpu_ids: [2]
+gpu_ids: [0,1]
 manual_seed: 0
 distortion: deblur
 

@@ -1,0 +1,69 @@
+21-07-26 06:53:40.243 - INFO:   name: EDVR_L_REDS_deblur_official
+  model_type: EDVRModel
+  scale: 1
+  num_gpu: 1
+  gpu_ids: [2]
+  manual_seed: 0
+  distortion: deblur
+  datasets:[
+    test:[
+      name: REDS4
+      mode: video_test
+      type: VideoTestDataset
+      dataroot_GT: /gdata1/zhuqi/REDS/val_sharp
+      dataroot_LQ: /gdata1/zhuqi/REDS/val_blur
+      filelist: /gdata1/zhuqi/REDS/val/groups.txt
+      io_backend:[
+        type: disk
+      ]
+      cache_data: False
+      num_frame: 5
+      padding: replicate
+      n_workers: 1
+      phase: test
+      data_type: img
+    ]
+  ]
+  network_G:[
+    type: EDVR
+    num_in_ch: 3
+    num_out_ch: 3
+    num_feat: 128
+    num_extract_block: 5
+    num_reconstruct_block: 40
+    center_frame_idx: None
+    hr_in: True
+    with_predeblur: True
+    with_tsa: True
+    nframes: 5
+    groups: 8
+    nf: 64
+    front_RBs: 5
+    back_RBs: 10
+    center: None
+    predeblur: False
+    HR_in: False
+    w_TSA: True
+  ]
+  path:[
+    pretrain_network_g: pretrained/EDVR_L_deblur_REDS_official-ca46bd8c.pth
+    strict_load: True
+    root: .
+    results_root: ./results/EDVR_L_REDS_deblur_official
+    log: ./results/EDVR_L_REDS_deblur_official
+  ]
+  val:[
+    save_img: True
+    suffix: False
+    metrics:[
+      psnr:[
+        type: calculate_psnr
+        crop_border: 0
+        test_y_channel: False
+      ]
+    ]
+  ]
+  is_train: False
+
+21-07-26 06:53:40.358 - INFO: Dataset [DatasetFromFolder - REDS4] is created.
+21-07-26 06:53:40.359 - INFO: Number of test images in [REDS4]: 3000
